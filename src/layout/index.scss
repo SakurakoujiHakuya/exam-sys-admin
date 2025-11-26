@@ -1,0 +1,22 @@
+/* fade-transform */
+.fade-transform-enter {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.fade-transform-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.5s;
+}
+
+.fade-transform-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.fade-transform-exit-active {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.5s;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Layout, Menu, Avatar, Dropdown } from 'antd';
 import {
     MenuFoldOutlined,
@@ -12,6 +12,8 @@ import {
     ProfileOutlined
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import './index.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearLogin } from '@/store/slices/userSlice';
 import { logout } from '@/api/login';
@@ -106,6 +108,10 @@ const MainLayout = () => {
         </Menu>
     );
 
+    const nodeRefs = useRef({});
+    const locationKey = location.pathname;
+    const currentNodeRef = nodeRefs.current[locationKey] ?? (nodeRefs.current[locationKey] = React.createRef());
+
     return (
 
         <Layout style={{ minHeight: '100vh' }}>
@@ -183,7 +189,18 @@ const MainLayout = () => {
                         overflow: 'hidden'
                     }}
                 >
-                    <Outlet />
+                    <SwitchTransition mode="out-in">
+                        <CSSTransition
+                            key={locationKey}
+                            nodeRef={currentNodeRef}
+                            classNames="fade-transform"
+                            timeout={500}
+                        >
+                            <div ref={currentNodeRef} style={{ height: '100%' }}>
+                                <Outlet />
+                            </div>
+                        </CSSTransition>
+                    </SwitchTransition>
                 </Content>
             </Layout>
         </Layout>
