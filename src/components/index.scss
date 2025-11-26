@@ -26,6 +26,23 @@
             margin-top: 4px;
             text-decoration: none;
 
+            &.active {
+                background-color: #409eff;
+                color: #fff;
+                border-color: #409eff;
+
+                &::before {
+                    content: '';
+                    background: #fff;
+                    display: inline-block;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    position: relative;
+                    margin-right: 2px;
+                }
+            }
+
             &:first-of-type {
                 margin-left: 15px;
                 border-radius: 50%;

@@ -41,7 +41,14 @@ const BreadcrumbComponent = () => {
         return {
             key: url,
             title: <Link to={url}>{title}</Link>,
+            titleText: title // Store raw title for filtering
         };
+    }).filter((item, index, self) => {
+        // Filter out items with the same title as the previous one
+        if (index > 0 && item.titleText === self[index - 1].titleText) {
+            return false;
+        }
+        return true;
     });
 
     const breadcrumbItems = [
