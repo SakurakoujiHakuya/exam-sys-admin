@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Select, Button, Card, message, InputNumber } from 'antd';
+import { Form, Input, Select, Button, Card, message, InputNumber, Space } from 'antd';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import * as questionApi from '@/api/question';
 import * as subjectApi from '@/api/subject';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill-new';
+import 'react-quill-new/dist/quill.snow.css';
+import QuestionShow from '../components/Show';
 
 const ShortAnswer = () => {
     const navigate = useNavigate();
@@ -15,6 +16,7 @@ const ShortAnswer = () => {
     const [loading, setLoading] = useState(false);
     const [subjects, setSubjects] = useState([]);
     const [subjectFilter, setSubjectFilter] = useState([]);
+    const [previewVisible, setPreviewVisible] = useState(false);
 
     const levelEnum = useSelector(state => state.enumItem.user.levelEnum);
 
@@ -82,6 +84,10 @@ const ShortAnswer = () => {
         });
     };
 
+    const resetForm = () => {
+        form.resetFields();
+    };
+
     return (
         <div className="app-container">
             <Form form={form} layout="vertical" onFinish={onFinish}>
@@ -116,10 +122,21 @@ const ShortAnswer = () => {
                 </Form.Item>
 
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" loading={loading}>提交</Button>
-                    <Button onClick={() => navigate('/exam/question/list')} style={{ marginLeft: 8 }}>取消</Button>
+                    <Space>
+                        <Button type="primary" htmlType="submit" loading={loading}>提交</Button>
+                        <Button onClick={resetForm}>重置</Button>
+                        <Button type="success" onClick={() => setPreviewVisible(true)}>预览</Button>
+                        <Button onClick={() => navigate('/exam/question/list')}>取消</Button>
+                    </Space>
                 </Form.Item>
             </Form>
+
+            <QuestionShow
+                visible={previewVisible}
+                onClose={() => setPreviewVisible(false)}
+                qType={5}
+                question={form.getFieldsValue()}
+            />
         </div>
     );
 };

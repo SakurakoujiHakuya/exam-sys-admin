@@ -12,6 +12,11 @@ const UserAdminList = lazy(() => import('@/pages/user/admin/list'));
 const UserAdminEdit = lazy(() => import('@/pages/user/admin/edit'));
 const ExamPaperList = lazy(() => import('@/pages/exam/paper/list'));
 const ExamQuestionList = lazy(() => import('@/pages/exam/question/list'));
+const SingleChoice = lazy(() => import('@/pages/exam/question/edit/singleChoice'));
+const MultipleChoice = lazy(() => import('@/pages/exam/question/edit/multipleChoice'));
+const TrueFalse = lazy(() => import('@/pages/exam/question/edit/trueFalse'));
+const GapFilling = lazy(() => import('@/pages/exam/question/edit/gapFilling'));
+const ShortAnswer = lazy(() => import('@/pages/exam/question/edit/shortAnswer'));
 const TaskList = lazy(() => import('@/pages/task/list'));
 const SubjectList = lazy(() => import('@/pages/education/subject/list'));
 const SubjectEdit = lazy(() => import('@/pages/education/subject/edit'));
@@ -62,6 +67,26 @@ const router = createBrowserRouter([
             {
                 path: 'exam/question/list',
                 element: <Suspense fallback={<Loading />}><ExamQuestionList /></Suspense>
+            },
+            {
+                path: 'exam/question/edit/singleChoice',
+                element: <Suspense fallback={<Loading />}><SingleChoice /></Suspense>
+            },
+            {
+                path: 'exam/question/edit/multipleChoice',
+                element: <Suspense fallback={<Loading />}><MultipleChoice /></Suspense>
+            },
+            {
+                path: 'exam/question/edit/trueFalse',
+                element: <Suspense fallback={<Loading />}><TrueFalse /></Suspense>
+            },
+            {
+                path: 'exam/question/edit/gapFilling',
+                element: <Suspense fallback={<Loading />}><GapFilling /></Suspense>
+            },
+            {
+                path: 'exam/question/edit/shortAnswer',
+                element: <Suspense fallback={<Loading />}><ShortAnswer /></Suspense>
             },
             {
                 path: 'task/list',
