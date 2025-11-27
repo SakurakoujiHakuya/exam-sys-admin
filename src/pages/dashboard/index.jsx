@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Row, Col, Statistic, Carousel } from 'antd';
+import { Row, Col, Statistic, Carousel } from 'antd';
 import ReactECharts from 'echarts-for-react';
 import { index } from '@/api/dashboard';
 import './index.scss';
@@ -138,10 +138,8 @@ const Dashboard = () => {
                 </Carousel>
             </Row>
 
-            <Row className="echarts-line" style={{ marginTop: '32px' }}>
-                <Card bordered={false}>
-                    <ReactECharts option={getOption()} style={{ height: '500px', width: '100%' }} />
-                </Card>
+            <Row className="echarts-line">
+                <ReactECharts option={getOption()} style={{ height: '500px', width: '100%' }} />
             </Row>
         </div>
     );
