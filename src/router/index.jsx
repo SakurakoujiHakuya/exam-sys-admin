@@ -14,6 +14,7 @@ const ExamPaperList = lazy(() => import('@/pages/exam/paper/list'));
 const ExamQuestionList = lazy(() => import('@/pages/exam/question/list'));
 const TaskList = lazy(() => import('@/pages/task/list'));
 const SubjectList = lazy(() => import('@/pages/education/subject/list'));
+const SubjectEdit = lazy(() => import('@/pages/education/subject/edit'));
 const AnswerList = lazy(() => import('@/pages/answer/list'));
 const MessageList = lazy(() => import('@/pages/message/list'));
 const MessageSend = lazy(() => import('@/pages/message/send'));
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             {
                 path: 'education/subject/list',
                 element: <Suspense fallback={<Loading />}><SubjectList /></Suspense>
+            },
+            {
+                path: 'education/subject/edit',
+                element: <Suspense fallback={<Loading />}><SubjectEdit /></Suspense>
             },
             {
                 path: 'answer/list',
