@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Layout, Menu, Avatar, Dropdown } from 'antd';
 import {
     MenuFoldOutlined,
@@ -113,6 +113,19 @@ const MainLayout = () => {
     const currentNodeRef = nodeRefs.current[locationKey] ?? (nodeRefs.current[locationKey] = React.createRef());
     const currentOutlet = useOutlet();
 
+    const [showExpandedLogo, setShowExpandedLogo] = useState(!collapsed);
+
+    useEffect(() => {
+        if (!collapsed) {
+            const timer = setTimeout(() => {
+                setShowExpandedLogo(true);
+            }, 100); // Wait for sidebar transition
+            return () => clearTimeout(timer);
+        } else {
+            setShowExpandedLogo(false);
+        }
+    }, [collapsed]);
+
     return (
 
         <Layout style={{ minHeight: '100vh' }}>
@@ -144,11 +157,15 @@ const MainLayout = () => {
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}>
-                    {collapsed ? <img src={logo} alt="logo" style={{ width: '32px', height: '32px' }} /> : (
-                        <>
-                            <img src={logo} alt="logo" style={{ width: '50px', height: '44px', marginRight: '12px' }} />
-                            <span>考试管理系统</span>
-                        </>
+                    {collapsed ? (
+                        <img src={logo} alt="logo" style={{ width: '32px', height: '32px' }} />
+                    ) : (
+                        showExpandedLogo && (
+                            <div className="fade-in" style={{ display: 'flex', alignItems: 'center' }}>
+                                <img src={logo} alt="logo" style={{ width: '50px', height: '44px', marginRight: '12px' }} />
+                                <span>考试管理系统</span>
+                            </div>
+                        )
                     )}
                 </div>
                 <Menu
