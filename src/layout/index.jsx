@@ -11,7 +11,7 @@ import {
     MessageOutlined,
     ProfileOutlined
 } from '@ant-design/icons';
-import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation, useOutlet } from 'react-router-dom';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import './index.scss';
 import { useSelector, useDispatch } from 'react-redux';
@@ -111,6 +111,7 @@ const MainLayout = () => {
     const nodeRefs = useRef({});
     const locationKey = location.pathname;
     const currentNodeRef = nodeRefs.current[locationKey] ?? (nodeRefs.current[locationKey] = React.createRef());
+    const currentOutlet = useOutlet();
 
     return (
 
@@ -197,7 +198,7 @@ const MainLayout = () => {
                             timeout={500}
                         >
                             <div ref={currentNodeRef} style={{ height: '100%' }}>
-                                <Outlet />
+                                {currentOutlet}
                             </div>
                         </CSSTransition>
                     </SwitchTransition>
