@@ -145,7 +145,7 @@ const MainLayout = () => {
                 }}>
                     {collapsed ? <img src={logo} alt="logo" style={{ width: '32px', height: '32px' }} /> : (
                         <>
-                            <img src={logo} alt="logo" style={{ width: '32px', height: '32px', marginRight: '12px' }} />
+                            <img src={logo} alt="logo" style={{ width: '50px', height: '44px', marginRight: '12px' }} />
                             <span>考试管理系统</span>
                         </>
                     )}
