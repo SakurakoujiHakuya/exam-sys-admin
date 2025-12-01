@@ -20,7 +20,9 @@ const BreadcrumbComponent = () => {
         '/exam/paper': '试卷列表',
         '/exam/paper/list': '试卷列表',
         '/exam/question': '题目列表',
+        '/exam/question/edit': '题目编辑',
         '/exam/question/list': '题目列表',
+        '/exam/question/edit/singleChoice': '单选题',
         '/task': '任务管理',
         '/task/list': '任务列表',
         '/education': '教育管理',
@@ -40,7 +42,9 @@ const BreadcrumbComponent = () => {
         const title = breadcrumbNameMap[url] || url;
         return {
             key: url,
-            title: <Link to={url}>{title}</Link>,
+            // title: <Link to={url}>{title}</Link>,
+            title: <span to={url}>{title}</span>,
+
             titleText: title // Store raw title for filtering
         };
     }).filter((item, index, self) => {
@@ -64,7 +68,7 @@ const BreadcrumbComponent = () => {
         : breadcrumbItems.filter(item => item.key !== '/dashboard');
 
     return (
-        <Breadcrumb items={finalItems} style={{ lineHeight: '50px', marginLeft: '10px', float: 'left' }} />
+        <Breadcrumb items={finalItems} style={{ marginLeft: '10px', float: 'left' }} />
     );
 };
 
