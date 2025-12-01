@@ -11,6 +11,7 @@ const UserStudentEdit = lazy(() => import('@/pages/user/student/edit'));
 const UserAdminList = lazy(() => import('@/pages/user/admin/list'));
 const UserAdminEdit = lazy(() => import('@/pages/user/admin/edit'));
 const ExamPaperList = lazy(() => import('@/pages/exam/paper/list'));
+const ExamPaperEdit = lazy(() => import('@/pages/exam/paper/edit'));
 const ExamQuestionList = lazy(() => import('@/pages/exam/question/list'));
 const SingleChoice = lazy(() => import('@/pages/exam/question/edit/singleChoice'));
 const MultipleChoice = lazy(() => import('@/pages/exam/question/edit/multipleChoice'));
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
             {
                 path: 'exam/paper/list',
                 element: <Suspense fallback={<Loading />}><ExamPaperList /></Suspense>
+            },
+            {
+                path: 'exam/paper/edit',
+                element: <Suspense fallback={<Loading />}><ExamPaperEdit /></Suspense>
             },
             {
                 path: 'exam/question/list',
