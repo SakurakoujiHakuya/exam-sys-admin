@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, Select, DatePicker, message, Card, Spin, Space } from 'antd';
+import { Form, Input,InputNumber, Button, Select, DatePicker, message, Card, Spin, Space } from 'antd';
 import { useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import * as userApi from '@/api/user';
@@ -97,7 +97,7 @@ const UserStudentEdit = () => {
                             <Input />
                         </Form.Item>
                         <Form.Item name="age" label="年龄">
-                            <Input />
+                            <InputNumber min={1} max={24}/>
                         </Form.Item>
                         <Form.Item name="sex" label="性别">
                             <Select placeholder="性别" allowClear>
