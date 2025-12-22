@@ -97,16 +97,20 @@ const MainLayout = () => {
         }
     ];
 
-    const userMenu = (
-        <Menu>
-            <Menu.Item key="profile" onClick={() => navigate('/profile/index')}>
-                个人简介
-            </Menu.Item>
-            <Menu.Item key="logout" onClick={handleLogout}>
-                退出登录
-            </Menu.Item>
-        </Menu>
-    );
+    const userMenuItems = [
+        { key: 'profile', label: '个人简介' },
+        { key: 'logout', label: '退出登录' }
+    ];
+
+    const handleUserMenuClick = ({ key }) => {
+        if (key === 'profile') {
+            navigate('/profile/index');
+            return;
+        }
+        if (key === 'logout') {
+            handleLogout();
+        }
+    };
 
     const nodeRefs = useRef({});
     const locationKey = location.pathname;
@@ -188,7 +192,7 @@ const MainLayout = () => {
                             })}
                             <BreadcrumbComponent />
                         </div>
-                        <Dropdown overlay={userMenu}>
+                        <Dropdown menu={{ items: userMenuItems, onClick: handleUserMenuClick }}>
                             <span className="avatar-item" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
                                 <Avatar icon={<UserOutlined />} src={userInfo?.imagePath} size="small" style={{ marginRight: '8px' }} />
                                 <span>{userInfo?.userName || 'Admin'}</span>
